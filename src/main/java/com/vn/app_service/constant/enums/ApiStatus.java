@@ -2,19 +2,20 @@ package com.vn.app_service.constant.enums;
 
 public enum ApiStatus {
 
-    SUCCESS("ES200", "Success"),
-
-    INPUT_ERROR("01", "Data invalid"),
-
-    RESOURCE_NOT_FOUND("02", "Resource not found"),
-
-    UNKNOWN("03", "System error"),
+    SUCCESS("200", "Success"),
 
     BAD_CREDENTIALS("04", "Error username or password"),
+    BAD_REQUEST("400", "BAD_REQUEST"),
 
-    BAD_REQUEST("05", "Bad request"),
+    ACCESS_DENIED("202", "Access denied"),
 
-    ACCESS_DENIED("06", "Access denied");
+    INTERNAL_SERVER_ERROR("500", "INTERNAL_SERVER_ERROR"),
+
+    UNAUTHORIZED("401", "UNAUTHORIZED"),
+
+    FORBIDDEN("403", "UNAUTHORIZED"),
+
+    NOT_FOUND("404", "NOT_FOUND");
 
     private final String code;
 
