@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import com.vn.app_service.constant.enums.ApiStatus;
 import com.vn.app_service.payload.request.LoginRequest;
 import com.vn.app_service.payload.request.SignupRequest;
 import com.vn.app_service.payload.response.BaseResponse;
@@ -52,7 +53,7 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public BaseResponse<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -65,11 +66,10 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        return BaseResponse.builder()
+                .status(ApiStatus.SUCCESS.getStatus())
+                .data(new JwtResponse(jwt, userDetails.getId(),userDetails.getUsername(),userDetails.getEmail(),roles))
+                .build();
     }
 
     @PostMapping("/signup")
