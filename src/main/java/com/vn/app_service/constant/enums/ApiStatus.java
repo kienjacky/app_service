@@ -17,12 +17,12 @@ public enum ApiStatus {
 
     NOT_FOUND("404", "NOT_FOUND");
 
-    private final String code;
+    private final String status;
 
     private final String message;
 
-    ApiStatus(String code, String message) {
-        this.code = code;
+    ApiStatus(String status, String message) {
+        this.status = status;
         this.message = message;
     }
 
@@ -30,7 +30,7 @@ public enum ApiStatus {
         return message;
     }
 
-    public String getCode() {
-        return code;
+    public String getStatus() {
+        return status;
     }
 }

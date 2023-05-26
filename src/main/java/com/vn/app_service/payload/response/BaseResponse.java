@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class BaseResponse<T> {
 
     @Builder.Default
-    private String code = ApiStatus.SUCCESS.getCode();
+    private String status = ApiStatus.SUCCESS.getStatus();
 
     @Builder.Default
     private String message = ApiStatus.SUCCESS.getMessage();
@@ -25,13 +25,13 @@ public class BaseResponse<T> {
 
     public BaseResponse(ApiStatus apiStatus) {
         responseTime = System.currentTimeMillis();
-        this.code = apiStatus.getCode();
+        this.status = apiStatus.getStatus();
         this.message = apiStatus.getMessage();
     }
 
     public BaseResponse(T data) {
         responseTime = System.currentTimeMillis();
-        this.code = ApiStatus.SUCCESS.getCode();
+        this.status = ApiStatus.SUCCESS.getStatus();
         this.message = ApiStatus.SUCCESS.getMessage();
         this.data = data;
     }

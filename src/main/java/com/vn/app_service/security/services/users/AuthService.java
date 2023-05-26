@@ -39,11 +39,11 @@ public class AuthService {
     public BaseResponse<?> registerUser(SignupRequest signUpRequest) {
 
         if (userRepository.existsByUsername(signUpRequest.getUsername())) {
-            return BaseResponse.builder().code(ApiStatus.BAD_REQUEST.getCode()).message("Error: Username is already taken!").build();
+            return BaseResponse.builder().status(ApiStatus.BAD_REQUEST.getStatus()).message("Error: Username is already taken!").build();
         }
 
         if (userRepository.existsByEmail(signUpRequest.getEmail())) {
-            return BaseResponse.builder().code(ApiStatus.BAD_REQUEST.getCode()).message("Error: Email is already in use!").build();
+            return BaseResponse.builder().status(ApiStatus.BAD_REQUEST.getStatus()).message("Error: Email is already in use!").build();
         }
 
         // Create new user's account
@@ -86,6 +86,6 @@ public class AuthService {
         user.setPhone(signUpRequest.getPhone());
         userRepository.save(user);
 
-        return BaseResponse.builder().code(ApiStatus.SUCCESS.getCode()).message("User registered successfully!").build();
+        return BaseResponse.builder().status(ApiStatus.SUCCESS.getStatus()).message("User registered successfully!").build();
     }
 }
