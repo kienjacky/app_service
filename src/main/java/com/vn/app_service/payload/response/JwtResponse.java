@@ -1,16 +1,14 @@
 package com.vn.app_service.payload.response;
 
-import java.util.List;
-
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
     private Long id;
     private String username;
     private String email;
-    private List<String> roles;
+    private String roles;
 
-    public JwtResponse(String accessToken, Long id, String username, String email, List<String> roles) {
+    public JwtResponse(String accessToken, Long id, String username, String email, String roles) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
@@ -58,7 +56,7 @@ public class JwtResponse {
         this.username = username;
     }
 
-    public List<String> getRoles() {
+    public String getRoles() {
         return roles;
     }
 }
