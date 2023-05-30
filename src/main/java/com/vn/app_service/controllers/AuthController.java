@@ -66,9 +66,12 @@ public class AuthController {
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
 
+        String getRole = String.valueOf(userDetails.getAuthorities());
+        getRole.substring(1);
+
         return BaseResponse.builder()
                 .status(ApiStatus.SUCCESS.getStatus())
-                .data(new JwtResponse(jwt, userDetails.getId(),userDetails.getUsername(),userDetails.getEmail(),roles))
+                .data(new JwtResponse(jwt, userDetails.getId(),userDetails.getUsername(),userDetails.getEmail(),getRole))
                 .build();
     }
 
